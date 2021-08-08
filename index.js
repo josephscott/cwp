@@ -22,7 +22,12 @@ async function handleRequest( request ) {
 		return new Response( 'User-agent: *\nDisallow: /' );
 	}
 
-	const response = await fetch( url.toString(), request );
+	if (
+		host === site
+		&& ( acceptHeader && acceptHeader.indexOf( 'text/html' ) >= 0 )
+	) {
+		const response = await fetch( url.toString(), request );
+	}
 
 	return fetch( url.toString(), request );
 }
