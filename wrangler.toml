@@ -1,0 +1,8 @@
+name = "cwp"
+account_id = "6f9f5da3a495c081ba0c5267aa75dee7"
+type = "javascript"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
