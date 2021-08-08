@@ -17,6 +17,8 @@ async function handleRequest( request ) {
 	}
 
 	url.hostname = host;
+	const acceptHeader = request.headers.get( 'accept' );
+
 
 	if ( url.pathname === '/robots.txt' ) {
 		return new Response( 'User-agent: *\nDisallow: /' );
