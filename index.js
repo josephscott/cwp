@@ -1,5 +1,12 @@
 const site = 'wordpress.com';
 
+const rewriter = new HTMLRewriter()
+	.on( 'title', {
+		element: el => {
+			el.prepend( 'CWP: ' );
+		}
+	} )
+
 /* *** */
 
 addEventListener( 'fetch', event => {
@@ -24,12 +31,13 @@ async function handleRequest( request ) {
 		return new Response( 'User-agent: *\nDisallow: /' );
 	}
 
+	const response = await fetch( url.toString(), request );
 	if (
 		host === site
 		&& ( acceptHeader && acceptHeader.indexOf( 'text/html' ) >= 0 )
 	) {
-		const response = await fetch( url.toString(), request );
+		return rewriter.transform( response );
 	}
 
-	return fetch( url.toString(), request );
+	return resposne;
 }
