@@ -25,7 +25,7 @@ async function handleRequest( request ) {
 
 	url.hostname = host;
 	const acceptHeader = request.headers.get( 'accept' );
-
+	const bypass = request.headers.get( 'x-bypass' );
 
 	if ( url.pathname === '/robots.txt' ) {
 		return new Response( 'User-agent: *\nDisallow: /' );
@@ -35,6 +35,7 @@ async function handleRequest( request ) {
 	if (
 		host === site
 		&& ( acceptHeader && acceptHeader.indexOf( 'text/html' ) >= 0 )
+		&& ( !bypass || ( bypass && bypass.indexOf( 'true' ) === -1 ) )
 	) {
 		return rewriter.transform( response );
 	}
