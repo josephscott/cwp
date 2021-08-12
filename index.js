@@ -39,5 +39,5 @@ async function handleRequest( request ) {
 		return rewriter.transform( response );
 	}
 
-	return resposne;
+	return response;
 }
