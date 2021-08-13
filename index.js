@@ -1,4 +1,4 @@
-const site = 'wordpress.com';
+const site = 'example.com';
 
 const rewriter = new HTMLRewriter()
 	.on( 'title', {
